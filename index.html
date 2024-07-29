@@ -10,6 +10,8 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .header {
             background-color: #f0f0f0;
@@ -23,23 +25,18 @@
             z-index: 1000;
         }
         .content {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            width: 100%;
             overflow: auto;
         }
         .typeform-embed {
             width: 100%;
-            height: 100%;
             border: none;
         }
     </style>
 </head>
 <body>
     <div class="header" id="header">
-        <h1>免費領取價值百萬UIUX全方位課程</h1>
+        <h1 id="headerTitle">免費領取價值百萬UIUX全方位課程</h1>
         <p>這是一些額外的標題內容，可以增加更多行。</p>
     </div>
     <div class="content" id="content">
@@ -51,11 +48,21 @@
             const header = document.getElementById('header');
             const content = document.getElementById('content');
             const headerHeight = header.offsetHeight;
-            content.style.top = headerHeight + 'px';
+            content.style.marginTop = headerHeight + 'px';
+            content.style.height = `calc(100% - ${headerHeight}px)`;
         }
 
         window.addEventListener('load', adjustContentPosition);
         window.addEventListener('resize', adjustContentPosition);
+
+        function setTitleSize(size) {
+            const headerTitle = document.getElementById('headerTitle');
+            headerTitle.style.fontSize = size + 'px';
+            adjustContentPosition();
+        }
+
+        // Example usage: Adjust the title size to 32px
+        setTitleSize(32);
     </script>
 </body>
 </html>
