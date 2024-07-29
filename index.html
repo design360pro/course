@@ -1,56 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>限時填寫表單</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: red;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-        .overlay-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
-            padding: 20px;
-        }
-        .countdown {
-            margin-bottom: 20px;
-        }
-        .typeform-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <title>Typeform 全螢幕嵌入</title>
 </head>
 <body>
-    <div class="overlay-container">
-        <h1>最後限時填寫</h1>
-        <div class="countdown">
-            <iframe src="https://huber0203.github.io/countdown" width="100%" height="100" style="border:none;"></iframe>
-        </div>
-    </div>
-    <div class="typeform-container">
-        <div data-tf-live="01J3XJVAHNN34KAATH65HGXN3D"></div>
-    </div>
+    <div data-tf-live="01J3XJVAHNN34KAATH65HGXN3D"></div>
     <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
