@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typeform 置底嵌入</title>
+    <title>Typeform 全螢幕嵌入</title>
     <style>
         * {
             margin: 0;
@@ -12,24 +12,19 @@
         html, body {
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        #content {
-            flex: 1;
+            overflow: hidden;
         }
         #form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            height: 50%; /* Adjust the height as needed */
+            height: 100%;
             background-color: black; /* Optional: set background color */
         }
     </style>
 </head>
 <body>
-    <div id="content">
-        <!-- Here you can add any content you want to display above the form -->
-        <h1>上方的內容</h1>
-    </div>
     <div id="form" data-tf-live="01J3XJVAHNN34KAATH65HGXN3D"></div>
     <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
