@@ -7,40 +7,42 @@
     <style>
         body {
             font-family: '黑體', Arial, sans-serif;
-            text-align: center;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
         h1 {
             font-size: 2.5em;
-            margin: 10px 0; /* 减少行距 */
             color: #333;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
         }
         .timer {
-            margin: 5px 0; /* 减少行距 */
-        }
-        .container {
-            width: 80%;
-            height: 100vh; /* 设置为视口高度的100% */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .iframe-container {
-            margin: 10px 0; /* 减少行距 */
+            font-size: 1.5em;
+            color: #333;
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
         }
         .typeform-container {
             width: 100%;
-            height: calc(100% - 120px); /* 调整高度以使用更多空间 */
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
     </style>
 </head>
@@ -48,7 +50,7 @@
     <div class="container">
         <h1>領取UIUX課程</h1>
         <div class="timer">
-            <iframe src="https://huber0203.github.io/countdown" width="100%" height="50" style="border:none;"></iframe>
+            <iframe src="https://huber0203.github.io/countdown" width="300" height="50" style="border:none;"></iframe>
         </div>
         <div class="typeform-container">
             <div data-tf-live="01J3XJVAHNN34KAATH65HGXN3D" style="width:100%;height:100%;border:none;"></div>
