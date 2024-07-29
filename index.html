@@ -9,7 +9,6 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -21,16 +20,15 @@
             width: 100%;
             position: fixed;
             top: 0;
-            left: 0;
             z-index: 1000;
         }
         .content {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: auto;
+            flex: 1;
+            margin-top: 100px; /* 確保內容在 header 之下 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
         .typeform-embed {
             width: 100%;
@@ -48,26 +46,5 @@
         <div data-tf-live="01J3XHT7PGDXSRARBT8EV00TPV" class="typeform-embed"></div>
     </div>
     <script src="//embed.typeform.com/next/embed.js"></script>
-    <script>
-        function adjustContentPosition() {
-            const header = document.getElementById('header');
-            const content = document.getElementById('content');
-            const headerHeight = header.offsetHeight;
-            content.style.top = headerHeight + 'px';
-            content.style.height = `calc(100% - ${headerHeight}px)`;
-        }
-
-        window.addEventListener('load', adjustContentPosition);
-        window.addEventListener('resize', adjustContentPosition);
-
-        function setTitleSize(size) {
-            const headerTitle = document.getElementById('headerTitle');
-            headerTitle.style.fontSize = size + 'px';
-            adjustContentPosition();
-        }
-
-        // Example usage: Adjust the title size to 32px
-        // setTitleSize(32);
-    </script>
 </body>
 </html>
