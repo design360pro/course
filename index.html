@@ -23,7 +23,6 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            transition: all 0.5s ease; /* 添加過渡效果 */
         }
         .content {
             position: absolute;
@@ -32,6 +31,7 @@
             left: 0;
             right: 0;
             overflow: auto;
+            visibility: hidden; /* 初始隱藏內容 */
         }
         .typeform-embed {
             width: 100%;
@@ -42,7 +42,7 @@
 </head>
 <body>
     <div class="header" id="header">
-        <h1 id="headerTitle">免費領取價值百萬UIUX全方位課程3</h1>
+        <h1 id="headerTitle">免費領取價值百萬UIUX全方位課程4</h1>
         <p>這是一些額外的標題內容，可以增加更多行。</p>
     </div>
     <div class="content" id="content">
@@ -56,12 +56,11 @@
             const headerHeight = header.offsetHeight;
             content.style.top = headerHeight + 'px';
             content.style.height = `calc(100% - ${headerHeight}px)`;
+            content.style.visibility = 'visible'; // 顯示內容
         }
 
         window.addEventListener('load', adjustContentPosition);
         window.addEventListener('resize', adjustContentPosition);
-
-        document.addEventListener('DOMContentLoaded', adjustContentPosition);
     </script>
 </body>
 </html>
