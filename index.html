@@ -25,14 +25,15 @@
         .content {
             flex: 1;
             margin-top: 100px; /* 確保內容在 header 之下 */
+            padding: 20px; /* 增加內邊距以適當顯示 Typeform */
             display: flex;
             justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            align-items: flex-start; /* 確保內容從頂部開始 */
+            overflow: auto; /* 確保內容可滾動 */
         }
         .typeform-embed {
             width: 100%;
-            height: 100%;
+            height: calc(100vh - 160px); /* 減去 header 和 padding 的高度 */
             border: none;
         }
     </style>
