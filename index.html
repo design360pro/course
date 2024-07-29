@@ -3,58 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>領取UIUX課程</title>
+    <title>限時填寫表單</title>
     <style>
-        body {
-            font-family: '黑體', Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: red;
-            height: 100vh;
-            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
         }
-        .container {
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            padding: 20px;
+        }
+        .countdown {
+            margin-bottom: 20px;
+        }
+        .typeform-container {
             position: relative;
             width: 100%;
             height: 100%;
         }
-        h1 {
-            font-size: 2.5em;
-            color: red;
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-        }
-        .timer {
-            font-size: 1.5em;
-            color: red;
-            position: absolute;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-        }
-        .typeform-container {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>領取UIUX課程</h1>
-        <div class="timer">
-            <iframe src="https://huber0203.github.io/countdown" width="300" height="50" style="border:none;"></iframe>
+    <div class="overlay-container">
+        <h1>最後限時填寫</h1>
+        <div class="countdown">
+            <iframe src="https://huber0203.github.io/countdown" width="100%" height="100" style="border:none;"></iframe>
         </div>
-        <div class="typeform-container">
-            <div data-tf-live="01J3XJVAHNN34KAATH65HGXN3D" style="width:100%;height:100%;border:none;"></div>
-        </div>
+    </div>
+    <div class="typeform-container">
+        <div data-tf-live="01J3XJVAHNN34KAATH65HGXN3D"></div>
     </div>
     <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
