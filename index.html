@@ -32,22 +32,26 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
         .typeform-embed {
             flex: 1;
-            display: flex;
-            flex-direction: column;
+            position: relative; /* 新增的行 */
         }
-        .typeform-embed div {
-            flex: 1;
-            height: 100%;
+        .typeform-embed iframe {
+            position: absolute; /* 新增的行 */
+            top: 0; /* 新增的行 */
+            left: 0; /* 新增的行 */
+            width: 100%; /* 新增的行 */
+            height: 100%; /* 新增的行 */
+            border: none; /* 新增的行 */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header" id="header">
-            <h1>這是您的標題a</h1>
+        <div class="header">
+            <h1>這是您的標題</h1>
         </div>
         <div class="content">
             <div class="typeform-embed">
@@ -59,12 +63,10 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var header = document.getElementById("header");
-            var content = document.querySelector(".content");
-            var typeformEmbed = document.querySelector(".typeform-embed div");
+            var header = document.querySelector('.header');
+            var typeformEmbed = document.querySelector('.typeform-embed');
             var headerHeight = header.offsetHeight;
-            content.style.height = `calc(100% - ${headerHeight}px)`;
-            typeformEmbed.style.height = '100%';
+            typeformEmbed.style.height = `calc(100% - ${headerHeight}px)`; // 新增的行
         });
     </script>
 </body>
