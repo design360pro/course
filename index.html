@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -20,32 +21,53 @@
             width: 100%;
             position: fixed;
             top: 0;
+            left: 0;
             z-index: 1000;
         }
         .content {
-            flex: 1;
-            margin-top: 100px; /* 確保內容在 header 之下 */
-            padding: 20px; /* 增加內邊距以適當顯示 Typeform */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* 確保內容從頂部開始 */
-            overflow: auto; /* 確保內容可滾動 */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: auto;
         }
         .typeform-embed {
             width: 100%;
-            height: calc(100vh - 160px); /* 減去 header 和 padding 的高度 */
+            height: 100%;
             border: none;
         }
     </style>
 </head>
 <body>
     <div class="header" id="header">
-        <h1 id="headerTitle">免費領取價值百萬UIUX全方位課程</h1>
+        <h1 id="headerTitle">免費領取價值百萬UIUX全方位課程2</h1>
         <p>這是一些額外的標題內容，可以增加更多行。</p>
     </div>
     <div class="content" id="content">
         <div data-tf-live="01J3XHT7PGDXSRARBT8EV00TPV" class="typeform-embed"></div>
     </div>
     <script src="//embed.typeform.com/next/embed.js"></script>
+    <script>
+        function adjustContentPosition() {
+            const header = document.getElementById('header');
+            const content = document.getElementById('content');
+            const headerHeight = header.offsetHeight;
+            content.style.top = headerHeight + 'px';
+            content.style.height = `calc(100% - ${headerHeight}px)`;
+        }
+
+        window.addEventListener('load', adjustContentPosition);
+        window.addEventListener('resize', adjustContentPosition);
+
+        function setTitleSize(size) {
+            const headerTitle = document.getElementById('headerTitle');
+            headerTitle.style.fontSize = size + 'px';
+            adjustContentPosition();
+        }
+
+        // Example usage: Adjust the title size to 32px
+        // setTitleSize(32);
+    </script>
 </body>
 </html>
