@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typeform 全螢幕嵌入</title>
+    <title>Typeform 嵌入示範</title>
     <style>
         * {
             margin: 0;
@@ -14,18 +14,33 @@
             height: 100%;
             overflow: hidden;
         }
+        #container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #header {
+            padding: 20px;
+            background-color: #f8f9fa; /* Optional: set background color for the header */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
+        }
         #form {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
+            flex: 1;
             background-color: black; /* Optional: set background color */
         }
     </style>
 </head>
 <body>
-    <div id="form" data-tf-live="01J3XJVAHNN34KAATH65HGXN3D"></div>
+    <div id="container">
+        <div id="header">
+            <h1>大標題</h1>
+            <!-- 其他內容可以放在這裡 -->
+        </div>
+        <div id="form" data-tf-live="01J3XJVAHNN34KAATH65HGXN3D"></div>
+    </div>
     <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
