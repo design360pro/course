@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typeform Embed with Countdown Timer</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+        }
+       .header {
+            text-align: center;
+            padding: 0px;
+            background-color: #000000;
+            border-bottom: 0px solid #ddd;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 30px; /* 您可以調整這裡的字體大小 */
+        }
+        .countdown {
+            text-align: center;
+            padding: 0px;
+            background-color: #f8f8f8;
+            border-bottom: 0px solid #ddd;
+            font-size: 20px; /* 您可以調整倒數計時器的字體大小 */
+            color: #ff0000; /* 您可以調整倒數計時器的字體顏色 */
+            height: 50px;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .typeform-embed {
+            flex: 1;
+            position: relative;
+        }
+        .typeform-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>領取課程最後倒數</h1>
+        </div>
+        <div class="countdown">
+            <iframe src="https://huber0203.github.io/countdown/" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+        <div class="content">
+            <div class="typeform-embed">
+                <div data-tf-live="01J49BPMJNJCG2HY3F773T593V"></div><script src="//embed.typeform.com/next/embed.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var header = document.querySelector('.header');
+            var countdown = document.querySelector('.countdown');
+            var typeformEmbed = document.querySelector('.typeform-embed');
+            var headerHeight = header.offsetHeight;
+            var countdownHeight = countdown.offsetHeight;
+            typeformEmbed.style.height = `calc(100% - ${headerHeight}px - ${countdownHeight}px)`;
+        });
+    </script>
+</body>
+</html>
