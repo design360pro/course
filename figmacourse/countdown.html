@@ -11,24 +11,37 @@
             display: flex;
             justify-content: center;
             align-items: top;
-            background-color: #fff; /* 背景顏色設置為黑色 */
+            background-color: #fff;
         }
         .timer {
-            font-size: 2em; /* 預設字體大小 */
-            color: #000; /* 文字顏色設置為白色 */
+            font-size: 2em;
+            color: #000;
             font-family: '黑體', Arial, sans-serif;
             font-weight: 800;
+        }
+        .reset-message {
+            font-size: 1.5em;
+            color: #000;
+            display: none;
+            margin-top: 0px;
+            font-weight: 900;
+            font-family: '黑體', Arial, sans-serif;
         }
     </style>
 </head>
 <body>
-    <div class="timer" id="timer" style="font-size: 1.5em;"></div> <!-- 調整字體大小 -->
+    <div class="timer" id="timer" style="font-size: 1.5em;"></div>
+    <div class="reset-message" id="resetMessage">即將進入最晚鳥3小時...</div>
     <script>
         function startCountdown() {
             var now = new Date();
+            /*測試時開啟下方這段
+            var nextResetTime = new Date(now.getTime()+5*1000);
+            /*測試時開啟上方這段*/
+
+            /*測試時關閉下方這段*/
             var nextResetTime = new Date(now.getTime());
 
-            // 找到下一個整3小時的時間點
             var hours = now.getHours();
             var nextHour = Math.ceil(hours / 3) * 3;
             if (nextHour == hours) {
@@ -38,7 +51,8 @@
             nextResetTime.setHours(nextHour);
             nextResetTime.setMinutes(0);
             nextResetTime.setSeconds(0);
-            nextResetTime.setMilliseconds(0);
+            nextResetTime.setMilliseconds(0); 
+            /*測試時開啟上方這段*/
 
             var x = setInterval(function() {
                 var now = new Date().getTime();
@@ -49,7 +63,6 @@
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // 格式化為兩位數
                 days = ("0" + days).slice(-2);
                 hours = ("0" + hours).slice(-2);
                 minutes = ("0" + minutes).slice(-2);
@@ -60,7 +73,13 @@
 
                 if (distance < 0) {
                     clearInterval(x);
-                    startCountdown();  // 重置倒計時
+                    document.getElementById("timer").style.display = "none";
+                    document.getElementById("resetMessage").style.display = "block";
+                    setTimeout(function() {
+                        document.getElementById("resetMessage").style.display = "none";
+                        document.getElementById("timer").style.display = "block";
+                        startCountdown();  // 重置倒計時
+                    }, 3000); // 顯示提示3秒後重置倒計時
                 }
             }, 1000);
         }
