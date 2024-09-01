@@ -257,7 +257,7 @@
     src="https://www.facebook.com/tr?id=1011928905806927&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-     
+
 </head>
 <body>
     <div class="nav-menu-container">
@@ -332,7 +332,8 @@
                     <option value="假日晚上">假日晚上</option>
                 </select>
                 
-                <input type="submit" value="申請報名(剩3位)" class="submit-button">
+                <input type="submit" value="申請報名(剩3位)" class="submit-button" onclick="trackLeadEvent()">
+
 
             </form>
             
@@ -349,6 +350,11 @@
     </div>
 
     <script>
+function trackLeadEvent() {
+    fbq('track', 'Lead'); // 触发 Lead 事件
+  }
+
+
 // 確保 iframe 已經加載完成後操作它的內容
 document.querySelector('.countdown-container iframe').onload = function() {
     const iframeDocument = this.contentDocument || this.contentWindow.document;
