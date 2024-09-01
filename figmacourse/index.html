@@ -298,7 +298,7 @@
 
         
         <div class="form-container">
-            <form id="registration-form" class="custom-form scroll-target" action="https://docs.google.com/forms/d/1v8in81GQTb3mKyRNpfAbgKyXi0jWH1MSkZmt6caN9-A/formResponse" method="POST">
+            <form id="registration-form" class="custom-form scroll-target" action="https://docs.google.com/forms/d/1v8in81GQTb3mKyRNpfAbgKyXi0jWH1MSkZmt6caN9-A/formResponse" method="POST" onsubmit="return validateFormAndTrackLead()">
                 <label for="entry.1708014737">您想聽什麼領域的內容？</label>
                 <select name="entry.1708014737" id="entry.1708014737" required>
                     <option value="【插畫】：廣告海報、貼圖等">【插畫】：廣告海報、貼圖等</option>
@@ -350,32 +350,35 @@
     </div>
 
     <script>
-function trackLeadEvent() {
-    fbq('track', 'Lead'); // 触发 Lead 事件
-  }
+        function validateFormAndTrackLead() {
+            let isValid = true;
 
+            const phone = document.getElementById('entry.953642433').value;
 
-// 確保 iframe 已經加載完成後操作它的內容
-document.querySelector('.countdown-container iframe').onload = function() {
-    const iframeDocument = this.contentDocument || this.contentWindow.document;
+            // 验证手机号码是否为 10 位
+            if (phone.length !== 10 || !/^09\d{8}$/.test(phone)) {
+                document.getElementById('phone-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('phone-error').style.display = 'none';
+            }
+
+            if (isValid) {
+                fbq('track', 'Lead'); // 如果所有字段都已正确填写，触发 Lead 事件
+            }
+
+            return isValid; // 如果有效，则允许表单提交；否则阻止提交
+        }
+
     
-    // 更改 iframe 內部的樣式
-    iframeDocument.body.style.backgroundColor = '#fff'; // 更改背景顏色
-    const timerElement = iframeDocument.querySelector('#countdown-timer'); // 假設計時器的元素 ID 為 countdown-timer
-    if (timerElement) {
-        timerElement.style.color = '#000'; // 更改文字顏色
-    }
-};
-
-
-
-
+        
+    
         function scrollToForm() {
             document.getElementById('registration-form').scrollIntoView({
                 behavior: 'smooth'
             });
         }
-
+    
         function scrollMenu(direction) {
             const menu = document.querySelector('.nav-menu');
             const scrollAmount = 100;
@@ -385,21 +388,21 @@ document.querySelector('.countdown-container iframe').onload = function() {
                 menu.scrollLeft += scrollAmount;
             }
         }
-
+    
         const fixedButtonContainer = document.getElementById('fixedButtonContainer');
         const registrationForm = document.getElementById('registration-form');
-
+    
         window.addEventListener('scroll', function() {
             const formRect = registrationForm.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-
+    
             if (formRect.top < windowHeight && formRect.bottom > 0) {
                 fixedButtonContainer.classList.add('hidden');
             } else {
                 fixedButtonContainer.classList.remove('hidden');
             }
         });
-
+    
         document.querySelectorAll('.nav-menu a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -408,58 +411,24 @@ document.querySelector('.countdown-container iframe').onload = function() {
                 });
             });
         });
-
+    
         window.addEventListener('scroll', function() {
             let scrollPosition = window.scrollY;
             document.querySelectorAll('.scroll-target').forEach(section => {
                 if (section.offsetTop - 100 <= scrollPosition) {
                     document.querySelectorAll('.nav-menu a').forEach(link => {
                         link.classList.remove('active');
-                        if (link.getAttribute('href').slic === section.id) {
+                        if (link.getAttribute('href').slice === section.id) {
                             link.classList.add('active');
                         }
                     });
                 }
             });
         });
+    
+        
 
-        // 手機號碼格式驗證
-        const phoneInput = document.getElementById('entry.953642433');
-        const phoneError = document.getElementById('phone-error');
-
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-
-            // 保留 "09" 開頭
-            if (!value.startsWith('09')) {
-                value = '09' + value.slice(2);
-            }
-
-            // 限制輸入最大10位數
-            if (value.length > 10) {
-                value = value.slice(0, 10);
-            }
-
-            e.target.value = value;
-
-            // 驗證是否是有效的台灣手機號碼
-            if (value.length === 10 && /^09\d{8}$/.test(value)) {
-                phoneError.style.display = 'none';
-            } else if (value.length === 10) {
-                phoneError.style.display = 'block';
-            } else {
-                phoneError.style.display = 'none';
-            }
-        });
-
-        // 防止光標移動到"09"之前
-        phoneInput.addEventListener('keydown', function(e) {
-            const cursorPos = phoneInput.selectionStart;
-            if (cursorPos <= 2 && (e.key === 'Backspace' || e.key === 'Delete')) {
-                e.preventDefault();
-            }
-        });
-
+    
         // 頁面滾動進度條
         window.addEventListener('scroll', function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -467,17 +436,17 @@ document.querySelector('.countdown-container iframe').onload = function() {
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progress-bar").style.width = scrolled + "%";
         });
-
-         // 取得今天的日期
-    const today = new Date();
-    const month = today.getMonth() + 1; // getMonth() 會返回 0-11，需要 +1 來取得正確月份
-    const day = today.getDate();
-
-    // 將日期格式化為 "月/日"
-    const formattedDate = month + '/' + day;
-
-    // 將日期顯示在指定的元素中
-    document.getElementById('current-date').textContent = formattedDate;
+    
+        // 取得今天的日期
+        const today = new Date();
+        const month = today.getMonth() + 1; // getMonth() 會返回 0-11，需要 +1 來取得正確月份
+        const day = today.getDate();
+    
+        // 將日期格式化為 "月/日"
+        const formattedDate = month + '/' + day;
+    
+        // 將日期顯示在指定的元素中
+        document.getElementById('current-date').textContent = formattedDate;
     </script>
 </body>
 </html>
