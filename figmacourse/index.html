@@ -226,7 +226,7 @@
             color: red;
             font-size: 12px;
             display: none;
-            margin-top: -10px;
+            margin-top: -20px;
             margin-bottom: 10px;
         }
 
@@ -412,13 +412,18 @@
             let isValid = true;
 
             const phone = document.getElementById('entry.953642433').value;
+            const inputField = document.getElementById('entry.953642433'); // 假設這是你要改變邊框顏色的輸入框
 
             // 验证手机号码是否为 10 位
             if (phone.length !== 10 || !/^09\d{8}$/.test(phone)) {
                 document.getElementById('phone-error').style.display = 'block';
+                inputField.style.borderColor = 'red';// 更改邊框顏色為紅色
+                inputField.style.borderWidth = '1.5px'; // 邊框加粗至 3px
                 isValid = false;
             } else {
                 document.getElementById('phone-error').style.display = 'none';
+                inputField.style.borderColor = ''; // 恢復邊框顏色為預設
+                inputField.style.borderWidth = ''; // 恢復邊框粗細為預設
             }
 
             if (isValid) {
