@@ -93,27 +93,29 @@
         .scroll-target {
             scroll-margin-top: 70px;
         }
-        .custom-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.custom-form input[type="text"],
-.custom-form input[type="email"],
-.custom-form select {
-    width: 100%;
-    max-width: 450px;
-    padding: 12px;
-    margin-bottom: 20px; /* Adjust this margin as needed */
-    border: 1px solid #898989;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
+        .custom-form input[type="text"],
+        .custom-form input[type="email"],
+        .custom-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .custom-form select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position-x: 98%;
+            background-position-y: 50%;
+        }
         .custom-form select option {
-            padding: 36px;
-            line-height: 3;
+            padding: 16px;
+            line-height: 1.5;
         }
         .submit-button {
             background-color: #2a48dd;
@@ -151,24 +153,9 @@
             transition: transform 0.3s ease-in-out;
         }
         .fixed-button {
-    background-color: #2a48dd;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.fixed-button:hover {
-    background-color: #3b5af4;
-}
-
+            max-width: 800px;
+            margin: 0 auto;
+        }
         .hidden {
             transform: translateY(100%);
         }
@@ -230,14 +217,13 @@
             z-index: 1001;
             width: 0%;
         }
-        
     </style>
 </head>
 <body>
     <div class="nav-menu-container">
         <!--<button class="nav-control" onclick="scrollMenu('left')">&lt;</button>-->
         <nav class="nav-menu">
-            <a href="#"><img src="logo.png" alt="品牌LOGO" style="height: 24px; width: 70px; vertical-align: middle; margin-right: 10px;"></a>
+            <a href="#"><img src="LOGO.png" alt="品牌LOGO" style="height: 24px; vertical-align: middle; margin-right: 10px;"></a>
             <a href="#teacher-intro">師資介紹</a>
             <a href="#course-outline">課程大綱</a>
             <a href="#showcase">案例介紹</a>
@@ -257,7 +243,7 @@
         <img src="6 (1).jpg" alt="熱門話題">
         <img id="course-offer" class="scroll-target" src="7 (1).jpg" alt="課程優惠">
         <img src="8 (1).jpg" alt="課程示例1">
-        <img id="showcase" src="9 (1).jpg" alt="課程示例2">
+        <img id="showcase" class="scroll-target" src="9 (1).jpg" alt="課程示例2">
         <img src="10.jpg" alt="課程示例3">
         <img src="11.jpg" alt="課程示例4">
         <img src="12.jpg" alt="課程示例5">
@@ -268,13 +254,12 @@
         <img src="17.jpg" alt="課程示例10">
         <img src="18.jpg" alt="課程示例11">
         <img src="19.jpg" alt="課程示例12">
-        <img id="registration-form" src="L1.jpg" alt="購買流程">
+        <img id="registration-form" class="scroll-target" src="L1.jpg" alt="報名流程">
 
         
         <div class="form-container">
             <form id="registration-form" class="custom-form scroll-target" action="https://docs.google.com/forms/d/1v8in81GQTb3mKyRNpfAbgKyXi0jWH1MSkZmt6caN9-A/formResponse" method="POST">
-
-                <label for="entry.1708014737">您還想聽什麼領域的內容？</label>
+                <label for="entry.1708014737">您想聽什麼領域的內容？</label>
                 <select name="entry.1708014737" id="entry.1708014737" required>
                     <option value="【插畫】：廣告海報、貼圖等">【插畫】：廣告海報、貼圖等</option>
                     <option value="【平面設計】：CIS、排版、色彩等">【平面設計】：CIS、排版、色彩等</option>
@@ -320,7 +305,7 @@
     </div>
 
     <div id="fixedButtonContainer" class="fixed-button-container">
-        <button class="fixed-button" onclick="scrollToForm()">立即報名(剩3位)</button>
+        <button class="fixed-button" onclick="scrollToForm()">立即報名</button>
     </div>
 
     <script>
@@ -378,7 +363,7 @@
         });
 
         // 手機號碼格式驗證
-        const phoneInput = document.getElementById('entry.2468013579');
+        const phoneInput = document.getElementById('entry.953642433');
         const phoneError = document.getElementById('phone-error');
 
         phoneInput.addEventListener('input', function(e) {
