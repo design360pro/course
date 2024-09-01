@@ -105,6 +105,8 @@
             font-size: 16px;
         }
         /*輸入框邊線顏色*/
+
+
         .custom-form select {
             appearance: none;
             -webkit-appearance: none;
@@ -185,17 +187,18 @@
             }
         }
         .countdown-container {
-            margin-top: 20px;
+            margin-top: 0px;
             text-align: center;
+            margin-bottom: 100px;
+            
         }
         iframe {
             width: 100%;
-            height: 50px;
+            height: 40px;
             border: none;
         }
-        .countdown-container iframe {
-            filter: inver hue-rotate(180deg);
-        }
+
+        
 
         /* 手機號碼樣式和錯誤提示 */
         .phone-input {
@@ -240,7 +243,7 @@
     <div class="nav-menu-container">
         <!--<button class="nav-control" onclick="scrollMenu('left')">&lt;</button>-->
         <nav class="nav-menu">
-            <a href="#"><img src="LOGO.png" alt="品牌LOGO" style="height: 24px; vertical-align: middle; margin-right: 10px;"></a>
+            <a href="#"><img src="LOGO.png" alt="品牌LOGO" style="height: 24px; width: 70px; vertical-align: middle; margin-right: 10px;"></a>
             <a href="#teacher-intro">師資介紹</a>
             <a href="#course-outline">課程大綱</a>
             <a href="#showcase">案例介紹</a>
@@ -315,8 +318,8 @@
             
             <!-- 嵌入倒計時 -->
             <div class="countdown-container">
-                <p>距離<span id="current-date"></span>報名截止只剩:</p>
-                <iframe src="https://design360pro.github.io/countdown/"></iframe>
+                <p style="margin-bottom: 0px;">距離<span id="current-date"></span>報名截止只剩:</p>
+                <iframe style="background-color: #fff; color: #000;" src="countdown.html"></iframe>
             </div>
         </div>
     </div>
@@ -326,6 +329,21 @@
     </div>
 
     <script>
+// 確保 iframe 已經加載完成後操作它的內容
+document.querySelector('.countdown-container iframe').onload = function() {
+    const iframeDocument = this.contentDocument || this.contentWindow.document;
+    
+    // 更改 iframe 內部的樣式
+    iframeDocument.body.style.backgroundColor = '#fff'; // 更改背景顏色
+    const timerElement = iframeDocument.querySelector('#countdown-timer'); // 假設計時器的元素 ID 為 countdown-timer
+    if (timerElement) {
+        timerElement.style.color = '#000'; // 更改文字顏色
+    }
+};
+
+
+
+
         function scrollToForm() {
             document.getElementById('registration-form').scrollIntoView({
                 behavior: 'smooth'
