@@ -428,6 +428,7 @@
 
             if (isValid) {
                 fbq('track', 'Lead'); // 如果所有字段都已正确填写，触发 Lead 事件
+                fbq('track', 'Purchase', {value: 100.00, currency: 'TWD'});
             }
 
             return isValid; // 如果有效，则允许表单提交；否则阻止提交
