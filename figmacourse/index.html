@@ -318,7 +318,7 @@
     <div class="progress-bar" id="progress-bar"></div>
 
     <div id="startimage" class="container">
-        <img src="1.jpg" alt="2024全新UI課程">
+        <img src="1.jpg" alt="UI設計實戰教學">
         <img src="2.jpg" alt="UI設計實戰教學">
         <img id="teacher-intro" class="scroll-target" src="3.jpg" alt="講師介紹">
         <img src="4.jpg" alt="課程包什麼">
@@ -342,7 +342,7 @@
         
         <div class="form-container">
             <form id="registration-form" class="custom-form scroll-target" action="https://docs.google.com/forms/d/1v8in81GQTb3mKyRNpfAbgKyXi0jWH1MSkZmt6caN9-A/formResponse" method="POST" onsubmit="return validateFormAndTrackLead()">
-                <label for="entry.1708014737">您想聽什麼領域的內容？</label>
+                <label for="entry.1708014737">您還想免費試聽什麼領域的內容？</label>
                 <select name="entry.1708014737" id="entry.1708014737" required>
                     <option value="【插畫】：廣告海報、貼圖等">【插畫】：廣告海報、貼圖等</option>
                     <option value="【平面設計】：CIS、排版、色彩等">【平面設計】：CIS、排版、色彩等</option>
@@ -363,7 +363,7 @@
                 <label for="entry.1468791071">Email</label>
                 <input type="email" id="entry.1468791071" name="entry.1468791071" required>
                 
-                <label for="entry.953642433">手機<span class="small-text">(限台灣，聯繫不到視同放棄)</span></label>
+                <label for="entry.953642433">手機<span class="small-text">(限台灣，專人提供課程觀看連結)</span></label>
                 <input type="text" id="entry.953642433" name="entry.953642433" class="phone-input" maxlength="10" required value="09">
                 <div id="phone-error" class="error-message">請輸入正確的台灣手機號碼格式。</div>
                 
@@ -375,34 +375,36 @@
                     <option value="假日晚上">假日晚上</option>
                 </select>
                 
-                <input type="submit" value="申請報名(剩3位)" class="submit-button" onclick="trackLeadEvent()">
+                <input type="submit" value="填完觀看(剩3份)" class="submit-button" onclick="trackLeadEvent()">
 
-
+                
             </form>
-            
+                
             <!-- 嵌入倒計時 -->
             <div class="countdown-container">
                 <p style="margin-bottom: 0px;">距離<span id="current-date"></span>報名截止只剩:</p>
                 <iframe style="background-color: #fff; color: #000;" src="countdown.html"></iframe>
             </div>
+
+            <p style="text-align: center;">個資僅供課程領取用途，不會外流，請放心填寫</p>
         </div>
     </div>
 
     <div id="fixedButtonContainer" class="fixed-button-container">
-        <button class="unique-submit-button" onclick="scrollToForm()">立即報名</button>
+        <button class="unique-submit-button" onclick="scrollToForm()">立即免費試看(1小時)</button>
 
            <!-- 淡入淡出姓名 -->
     <div class="fade-container">
-        <div class="fade-item">王O明 29分鐘前 已申請報名</div>
-        <div class="fade-item">李O華 26分鐘前 已申請報名</div>
-        <div class="fade-item">陳O玲 22分鐘前 已申請報名</div>
-        <div class="fade-item">林O杰 21分鐘前 已申請報名</div>
-        <div class="fade-item">張O婷 19分鐘前 已申請報名</div>
-        <div class="fade-item">黃O翔 17分鐘前 已申請報名</div>
-        <div class="fade-item">吳O君 15分鐘前 已申請報名</div>
-        <div class="fade-item">劉O瑩 14分鐘前 已申請報名</div>
-        <div class="fade-item">蔡O豪 12分鐘前 已申請報名</div>
-        <div class="fade-item">許O文 11分鐘前 已申請報名</div>
+        <div class="fade-item">賀 王O明同學 錄取薪水85K</div>
+        <div class="fade-item">賀 李O華同學 錄取薪水70K</div>
+        <div class="fade-item">賀 陳O玲同學 錄取薪水65K</div>
+        <div class="fade-item">賀 林O杰同學 錄取薪水110K</div>
+        <div class="fade-item">賀 張O婷同學 錄取薪水130K</div>
+        <div class="fade-item">賀 黃O翔同學 錄取薪水70K</div>
+        <div class="fade-item">賀 吳O君同學 錄取薪水59K</div>
+        <div class="fade-item">賀 劉O瑩同學 錄取薪水100K</div>
+        <div class="fade-item">賀 蔡O豪同學 錄取薪水90K</div>
+        <div class="fade-item">賀 許O文同學 錄取薪水120K</div>
     </div>
 
     </div>
