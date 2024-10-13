@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循環倒計時器</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: top;
+            background-color: #fff;
+        }
+        .timer {
+            font-size: 2em;
+            color: #000;
+            font-family: '黑體', Arial, sans-serif;
+            font-weight: 800;
+        }
+        .reset-message {
+            font-size: 1.5em;
+            color: #000;
+            display: none;
+            margin-top: 0px;
+            font-weight: 900;
+            font-family: '黑體', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer" id="timer" style="font-size: 1.5em;"></div>
+    <div class="reset-message" id="resetMessage">即將進入最晚鳥3小時...</div>
+    <script>
+        function startCountdown() {
+            var now = new Date();
+            /*測試時開啟下方這段
+            var nextResetTime = new Date(now.getTime()+5*1000);
+            /*測試時開啟上方這段*/
+
+            /*測試時關閉下方這段*/
+            var nextResetTime = new Date(now.getTime());
+
+            var hours = now.getHours();
+            var nextHour = Math.ceil(hours / 3) * 3;
+            if (nextHour == hours) {
+                nextHour += 3;
+            }
+
+            nextResetTime.setHours(nextHour);
+            nextResetTime.setMinutes(0);
+            nextResetTime.setSeconds(0);
+            nextResetTime.setMilliseconds(0); 
+            /*測試時開啟上方這段*/
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = nextResetTime - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                days = ("0" + days).slice(-2);
+                hours = ("0" + hours).slice(-2);
+                minutes = ("0" + minutes).slice(-2);
+                seconds = ("0" + seconds).slice(-2);
+
+                document.getElementById("timer").innerHTML = days + "天 " +
+                hours + "時 " + minutes + "分 " + seconds + "秒";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("timer").style.display = "none";
+                    document.getElementById("resetMessage").style.display = "block";
+                    setTimeout(function() {
+                        document.getElementById("resetMessage").style.display = "none";
+                        document.getElementById("timer").style.display = "block";
+                        startCountdown();  // 重置倒計時
+                    }, 3000); // 顯示提示3秒後重置倒計時
+                }
+            }, 1000);
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>
