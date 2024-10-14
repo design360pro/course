@@ -314,7 +314,9 @@
     </script>
     <!-- TikTok Pixel Code End -->
 
-    
+<!-- 加入 SHA-256 加密腳本 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+
 </head>
 <body>
     <div class="nav-menu-container">
@@ -413,53 +415,71 @@
     </div>
 
     <script>
+        function sha256(str) {
+            return CryptoJS.SHA256(str).toString();
+        }
+    
         function validateFormAndTrackLead() {
             let isValid = true;
-
+    
             const phone = document.getElementById('entry.953642433').value;
-            const inputField = document.getElementById('entry.953642433'); // 假設這是你要改變邊框顏色的輸入框
-
-            // 验证手机号码是否为 10 位
+            const email = document.getElementById('entry.1468791071').value; // 假設這是你電子郵件輸入框的ID
+            const inputField = document.getElementById('entry.953642433');
+            const emailField = document.getElementById('entry.1468791071');
+            const phoneError = document.getElementById('phone-error');
+            const emailError = document.getElementById('email-error');
+    
+            // 驗證手機號碼是否為 10 位
             if (phone.length !== 10 || !/^09\d{8}$/.test(phone)) {
-                document.getElementById('phone-error').style.display = 'block';
-                inputField.style.borderColor = 'red';// 更改邊框顏色為紅色
-                inputField.style.borderWidth = '1.5px'; // 邊框加粗至 3px
+                phoneError.style.display = 'block';
+                inputField.style.borderColor = 'red'; // 更改邊框顏色為紅色
+                inputField.style.borderWidth = '1.5px'; // 邊框加粗至 1.5px
                 isValid = false;
             } else {
-                document.getElementById('phone-error').style.display = 'none';
-                inputField.style.borderColor = ''; // 恢復邊框顏色為預設
-                inputField.style.borderWidth = ''; // 恢復邊框粗細為預設
+                phoneError.style.display = 'none';
+                inputField.style.borderColor = ''; // 恢復預設邊框顏色
+                inputField.style.borderWidth = ''; // 恢復預設邊框粗細
             }
-
-            if (isValid) {
-                fbq('track', 'Lead'); // 如果所有字段都已正确填写，触发 Lead 事件
-                fbq('track', 'Purchase', {value: 100.00, currency: 'TWD'});
-
-
-//TIKTOK
-// add this before event code to all pages where PII data postback is expected and appropriate 
-ttq.identify({
-	"email": "<hashed_email_address>", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
-	"phone_number": "<hashed_phone_number>", // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
-	"external_id": "<hashed_extenal_id>" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs.It must be hashed with SHA-256 on the client side.
-});
-
-ttq.track('SubmitForm', {
-	"contents": [
-		{
-			"brand": "<brand>" // string. The brand name of the page or product. Example: "Nike".
-		}
-	]
-});
-//TIKTOK
-                
-            }
-
-            return isValid; // 如果有效，则允许表单提交；否则阻止提交
-        }
-
     
-        
+            // 驗證電子郵件格式
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.style.display = 'block'; // 顯示錯誤訊息
+                emailField.style.borderColor = 'red';
+                emailField.style.borderWidth = '1.5px';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none'; // 隱藏錯誤訊息
+                emailField.style.borderColor = ''; 
+                emailField.style.borderWidth = '';
+            }
+    
+            if (isValid) {
+                // SHA-256 哈希處理手機號碼和電子郵件
+                const hashedEmail = sha256(email);
+                const hashedPhone = sha256(phone);
+    
+                fbq('track', 'Lead'); // 如果所有字段都已正確填寫，觸發 Lead 事件
+                fbq('track', 'Purchase', {value: 100.00, currency: 'TWD'});
+    
+                // TikTok 像素追蹤
+                ttq.identify({
+                    "email": hashedEmail, // 加密後的電子郵件
+                    "phone_number": hashedPhone, // 加密後的手機號碼
+                    "external_id": sha256("userID123") // 這裡也可以是其他唯一ID
+                });
+    
+                ttq.track('SubmitForm', {
+                    "contents": [
+                        {
+                            "brand": "YourBrand" // 自行修改品牌名稱
+                        }
+                    ]
+                });
+            }
+    
+            return isValid; // 如果有效，允許表單提交；否則阻止提交
+        }
     
         function scrollToForm() {
             document.getElementById('registration-form').scrollIntoView({
@@ -513,9 +533,6 @@ ttq.track('SubmitForm', {
                 }
             });
         });
-    
-        
-
     
         // 頁面滾動進度條
         window.addEventListener('scroll', function() {
